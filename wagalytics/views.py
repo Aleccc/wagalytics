@@ -135,7 +135,7 @@ def dashboard(request, site_id=None):
             ga_view_id = settings.WAGALYTICS_SETTINGS[site.id]['GA_VIEW_ID']
     else:
         # The regular ^analytics/dashboard/$ url is being viewed.
-        site = Site.objects.get(hostname=request.site.hostname)
+        site = Site.find_for_request(request)
         try:
             ga_view_id = settings.GA_VIEW_ID
         except AttributeError:
